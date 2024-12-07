@@ -1,0 +1,195 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* More professional sans-serif fonts */
+    background-color: #FFF8DC; /* Light yellow background */
+    color: #8B4513; /* Dark brown for text contrast */
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #DAA520; /* Goldenrod for headers */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+#habits {
+    background-color: #FAFAD2; /* Beige background */
+    border-radius: 15px; /* More rounded */
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.habit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.habit:hover {
+    background-color: rgba(255, 255, 218, 0.5); /* subtle highlight on hover */
+}
+
+button {
+    font-family: inherit;
+    background-color: #DAA520; /* Goldenrod for buttons */
+    color: white;
+    border: none;
+    border-radius: 10px; /* More rounded buttons */
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #B8860B; /* Darker goldenrod on hover */
+    transform: scale(1.05); /* Subtle scale up on hover */
+}
+
+button:active {
+    background-color: #8B4513; /* Even darker when pressed */
+    transform: scale(0.95); /* Slight shrink when pressed */
+}
+
+#addHabit, #viewHistory {
+    align-self: center;
+}
+
+#addHabitForm {
+    background-color: #FAFAD2; /* Beige background */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#addHabitForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #DAA520;
+    border-radius: 10px; /* More rounded input */
+}
+
+.deleteHabit {
+    background-color: #DC143C; /* Crimson for delete action */
+}
+
+.deleteHabit:hover {
+    background-color: #B22222; /* Darker red on hover */
+}
+
+#habits, #historyView {
+    background-color: #FAFAD2; /* Beige background for both habits and history */
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* For habit names in the history view */
+.historyLabel {
+    font-weight: normal;
+    background-color: #DAA520;
+    color: white;
+    padding: 4px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 40px; /* Increased height to accommodate two lines better */
+    height: 40px; /* Fixed height to ensure uniform size */
+    line-height: 1.25em;
+    width: 100px; /* Match the grid column size */
+}
+
+.historyItem {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    margin: 2px;
+    transition: transform 0.2s ease;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    align-self: center;
+    justify-self: center;
+    background-color: transparent; /* Clear for incomplete */
+}
+
+.historyItem.done {
+    background-color: #9ACD32; /* Green for done */
+}
+
+/* For habit descriptions in the habits section */
+.habit span {
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(1em * 2.5);
+    line-height: 1.25em;
+}
+
+/* Adjust grid layout for smaller history items */
+#historyView {
+    grid-template-columns: 100px repeat(7, 60px); 
+    grid-template-rows: 40px 20px repeat(auto-fill, minmax(40px, auto)); /* Added row for date */
+    gap: 6px;
+    align-items: center;
+    justify-items: center;
+    display: none;
+	padding: 10px;
+}
+
+/* Style for date labels under day names */
+.dateLabel {
+    font-size: 0.8em;
+    color: #8B4513; /* Dark brown for contrast */
+    grid-row: 2; /* Place in the second row of the grid */
+}
+
+@media (max-width: 600px) {
+    #historyView {
+        grid-template-columns: 80px repeat(7, 40px); /* Responsive adjustment */
+        grid-template-rows: 30px 15px repeat(auto-fill, minmax(35px, auto)); 
+        gap: 4px;
+    }
+    .historyLabel {
+        width: 80px;
+        height: 30px;
+        max-height: 30px;
+    }
+    .dateLabel {
+        font-size: 0.7em;
+    }
+    .historyItem {
+        width: 30px;
+        height: 30px;
+    }
+}
